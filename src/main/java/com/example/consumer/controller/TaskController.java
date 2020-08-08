@@ -11,13 +11,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class TaskController {
 
-    @Autowired
-    TaskService taskService;
+  @Autowired
+  private TaskService taskService;
 
-    @GetMapping(value = "{id}")
-    public String findById(@PathVariable Long id){
-        System.out.println(taskService.findById(id).getDescription());
-        return "redirect:/";
-    }
+  @GetMapping(value = "{id}")
+  public String findById(@PathVariable Long id) {
+    System.out.println(taskService.findById(id).getDescription());
+    return "redirect:/";
+  }
+
+  @GetMapping("all")
+  public String findAll(){
+    taskService.findAll().forEach(task-> System.out.println(task.getDescription()));
+    return "redirect:/";
+  }
 
 }
