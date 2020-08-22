@@ -3,6 +3,8 @@ package com.example.consumer.service;
 import com.example.consumer.model.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -36,6 +38,18 @@ public class TaskServiceImpl implements TaskService {
 
   @Override
   public void delete(Long id) {
-    
+    restTemplate.delete(idResource, id);
+  }
+
+  @Override
+  public Task update(Long id, Task task) {
+    return restTemplate
+      .exchange(idResource, HttpMethod.PUT, new HttpEntity<>(task), Task.class, id)
+      .getBody();
+  }
+
+  @Override
+  public Task create(Task task) {
+    return restTemplate.postForObject(resource, task, Task.class);
   }
 }

@@ -8,8 +8,8 @@ public class Task {
   private Integer completionPercentage;
   private User user;
 
-  public Task() {
-  }
+  public Task() { }
+
   public Long getId() {
     return id;
   }
@@ -48,5 +48,16 @@ public class Task {
 
   public void setUser(User user) {
     this.user = user;
+  }
+
+  @Override
+  public String toString() {
+    return "Task{" +
+      "id=" + id +
+      ", description='" + description + '\'' +
+      ", completed=" + completed +
+      ", completionPercentage=" + completionPercentage +
+      ", user=" + user +
+      '}';
   }
 }

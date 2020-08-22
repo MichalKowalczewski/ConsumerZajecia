@@ -2,4 +2,7 @@ server:
   port: 8081
 
 resource:
-  tasks: http://localhost:8080/api/tasks
+  producer-host: http://localhost:8080
+  tasks: ${resource.producer-host}/api/tasks
+  users: ${resource.producer-host}/api/users
+  pictures: ${resource.producer-host}/api/picture
